@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bavarian Health Care Clinic | عيادات بافاريان التخصصية</title>
+  <style>
+    :root {
+      --navy: #0f294a;
+      --red: #c81e3a;
+      --whatsapp: #16a34a;
+      --whatsapp-dark: #15803d;
+      --bg: #f4f7fb;
+      --card: rgba(255, 255, 255, 0.94);
+      --text: #1e293b;
+      --muted: #55657d;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .page-watermark {
+      position: fixed;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%) rotate(-12deg);
+      width: min(72vw, 460px);
+      height: auto;
+      opacity: 0.055;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      filter: grayscale(15%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      position: sticky;
+      top: 10px;
+      z-index: 10;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header-logo {
+      height: 40px;
+      width: auto;
+      max-width: 105px;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    .brand-title {
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 0.98rem;
+    }
+    .brand-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .lang-btn {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 9px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-top: 16px;
+      background: linear-gradient(135deg, var(--navy), #1d4273);
+      color: #fff;
+      padding: 28px 22px;
+      border-radius: 16px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .hero-watermark {
+      position: absolute;
+      inset-inline-end: -18px;
+      bottom: -24px;
+      width: 210px;
+      height: auto;
+      opacity: 0.14;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 1.55rem;
+    }
+    .hero p {
+      margin: 0;
+      color: #e2e8f0;
+      font-size: 0.96rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #fff;
+      background: var(--navy);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      cursor: pointer;
+    }
+    .btn-wa-main {
+      background: var(--whatsapp);
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+    }
+    .btn-wa-sec {
+      background: var(--whatsapp-dark);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    section {
+      margin-top: 18px;
+      background: var(--card);
+      backdrop-filter: blur(6px);
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    section h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--navy);
+      border-inline-start: 4px solid var(--red);
+      padding-inline-start: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .item {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .item strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .contact-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+    .contact-card {
+      background: rgba(248, 250, 252, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .contact-card p {
+      margin: 6px 0;
+      color: var(--muted);
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .social-btn {
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <img
+    src="Bavarian_Logo_Emblem_Only_for_LightBG.png"
+    alt=""
+    aria-hidden="true"
+    class="page-watermark"
+  />
+
+  <div class="container">
+    <header>
+      <div class="brand-wrap">
+        <img
+          src="Bavarian_Logo_Transparent_for_LightBG.png"
+          alt="Bavarian Health Care Clinic Logo"
+          class="header-logo"
+        />
+        <div>
+          <div class="brand-title" id="brandName">عيادات بافاريان التخصصية</div>
+          <div class="brand-sub" id="brandSub">Bavarian Health Care Clinic</div>
+        </div>
+      </div>
+      <button type="button" class="lang-btn" id="langBtn" onclick="switchLang()">EN</button>
+    </header>
+
+    <section class="hero">
+      <img
+        src="Bavarian_Logo_Emblem_Only_for_DarkBG.png"
+        alt=""
+        aria-hidden="true"
+        class="hero-watermark"
+      />
+      <div class="hero-content">
+        <div class="badge" id="badgeText">رعاية صحية بمعايير ألمانية</div>
+        <h1 id="heroTitle">د. عبدالرحمن الشرقاوي</h1>
+        <p id="heroDesc">
+          الخبير الألماني والمحاضر في أمراض القلب والأوعية الدموية، استشاري أول أمراض القلب والأوعية الدموية وقسطرة القلب والمنظمات، وزميل واستشاري القلب بـ Deutsches Herzzentrum München.
+        </p>
+        <div class="actions">
+          <a class="btn btn-wa-main" id="waMainBtn" href="https://wa.me/201107221974">واتساب (01107221974) ⭐</a>
+          <a class="btn btn-wa-sec" id="waSecBtn" href="https://wa.me/201107221964">واتساب (01107221964)</a>
+          <a class="btn btn-outline" id="callBtn" href="tel:+201107221974">اتصال مباشر</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 id="clinicsTitle">العيادات التخصصية</h2>
+      <div class="grid" id="clinicsGrid"></div>
+    </section>
+
+    <section>
+      <h2 id="devicesTitle">الأجهزة والفحوصات</h2>
+      <div class="grid" id="devicesGrid"></div>
+    </section>
+
+    <section>
+      <h2 id="teamTitle">نخبة الاستشاريين والفريق الطبي</h2>
+      <div class="grid" id="teamGrid"></div>
+    </section>
+
+    <section>
+      <h2 id="contactTitle">العناوين والتواصل</h2>
+      <div class="contact-box">
+        <div class="contact-card">
+          <strong id="cairoTitle">فرع القاهرة</strong>
+          <p id="cairoAddr">المركز الطبي CITY CARE - كومباوند جاردينيا سيتي – مدينة نصر – طريق السويس</p>
+          <p id="cairoPhones">هاتف: 01107221974 / 01107221964</p>
+          <p id="cairoEmail">إيميل: gardinia@bavarianhcc.de</p>
+        </div>
+        <div class="contact-card">
+          <strong id="deTitle">الفرع الرئيسي (ألمانيا)</strong>
+          <p id="deAddr">مركز أمراض القلب وطب القلب الرياضي – نطاق München (ولاية بافاريا)</p>
+          <p id="dePhones">هاتف: +49 8443 5783999 | فاكس: +49 8443 5783990</p>
+          <p id="deWeb">الموقع: www.bavarianhcc.de | www.kardiologie-lkpfaffenhofen.de</p>
+        </div>
+      </div>
+
+      <div class="social-links">
+        <a class="social-btn" id="fbLink" href="https://www.facebook.com/share/1ETr2KEvKR/?mibextid=wwXIfr">Facebook (@bavarianhealthcareclinic)</a>
+        <a class="social-btn" id="igLink" href="https://www.instagram.com/bavarianhealthcareclinic">Instagram (@bavarianhealthcareclinic)</a>
+        <a class="social-btn" id="siteLink" href="https://www.bavarianhcc.de">Website</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const content = {
+      ar: {
+        lang: "ar",
+        dir: "rtl",
+        btn: "EN",
+        brandName: "عيادات بافاريان التخصصية",
+        brandSub: "Bavarian Health Care Clinic",
+        badge: "رعاية صحية بمعايير ألمانية",
+        heroTitle: "د. عبدالرحمن الشرقاوي",
+        heroDesc: "الخبير الألماني والمحاضر في أمراض القلب والأوعية الدموية، استشاري أول أمراض القلب والأوعية الدموية وقسطرة القلب والمنظمات، وزميل واستشاري القلب بـ Deutsches Herzzentrum München.",
+        waMainBtn: "واتساب (01107221974) ⭐",
+        waSecBtn: "واتساب (01107221964)",
+        callBtn: "اتصال مباشر",
+        clinicsTitle: "العيادات التخصصية",
+        devicesTitle: "الأجهزة والفحوصات",
+        teamTitle: "نخبة الاستشاريين والفريق الطبي",
+        contactTitle: "العناوين والتواصل",
+        cairoTitle: "فرع القاهرة",
+        cairoAddr: "المركز الطبي CITY CARE - كومباوند جاردينيا سيتي – مدينة نصر – طريق السويس",
+        cairoPhones: "هاتف: 01107221974 / 01107221964",
+        cairoEmail: "إيميل: gardinia@bavarianhcc.de",
+        deTitle: "الفرع الرئيسي (ألمانيا)",
+        deAddr: "مركز أمراض القلب وطب القلب الرياضي – نطاق München (ولاية بافاريا)",
+        dePhones: "هاتف: +49 8443 5783999 | فاكس: +49 8443 5783990",
+        deWeb: "الموقع: www.bavarianhcc.de | www.kardiologie-lkpfaffenhofen.de",
+        fbLink: "فيسبوك (@bavarianhealthcareclinic)",
+        igLink: "إنستجرام (@bavarianhealthcareclinic)",
+        siteLink: "الموقع الإلكتروني",
+        clinics: [
+          ["هبوط عضلة القلب", "متابعة واكتشاف مبكر بالتعاون مع Deutsches Herzzentrum München وتحت إشراف د. عبدالرحمن الشرقاوي."],
+          ["اضطرابات وارتفاع الدهون", "اكتشاف مبكر ومتابعة للكبار والأطفال بالتعاون مع الجمعية الألمانية لتصلب الشرايين."],
+          ["طب القلب الرياضي (قريباً)", "تأهيل مرضى القلب ومتابعة الرياضيين مع فحص CPET واللاكتات بالتعاون مع Prof. Martin Halle."],
+          ["طب الجينات وكهرباء القلب والنوم", "الفحص الجيني (Synlab)، اضطرابات النوم، كهرباء القلب والذبذبة الأذينية، ومنظمات القلب."]
+        ],
+        devices: [
+          ["جهاز هولتر (حتى 14 يوماً)", "تسجيل متواصل بدون أسلاك مزود بالذكاء الاصطناعي لاعتماد التقرير من ميونيخ."],
+          ["دراسة النوم المنزلي", "لاكتشاف مشاكل انقطاع التنفس أثناء النوم للرضع والأطفال والكبار."],
+          ["ضغط 24 ساعة ووظائف التنفس", "قياس ضغط الدم على مدار 24 ساعة وقياس السعة الرئوية وكفاءة التنفس."],
+          ["الإيكو والأشعة وCPET / InBody", "إيكو على القلب، سونار ودوبلر، InBody، وفحوصات المجهود CPET واللاكتات."]
+        ],
+        team: [
+          ["أ.د/ محمد سعد أبو النور", "نائب رئيس قسم القلب – جامعة كيل، واستشاري أمراض القلب والقسطرة الهيكلية وتغيير الصمامات."],
+          ["أ.د/ لمياء علام", "أستاذ أمراض كهرباء القلب بجامعة عين شمس واستشاري كهربية القلب ومنظمات القلب."],
+          ["أ.د/ ياسمين عبد الرازق", "أستاذ أمراض القلب بجامعة عين شمس واستشاري قلب الأطفال والعيوب الخلقية."],
+          ["فريق الاستشاريين والأخصائيين", "د/ غادة عطية، د/ أحمد محمد طعيمة، د/ أسماء جمال الدين، د/ سلوى حسيب، أ.د/ هبة سعيد، وفريق الأخصائيين."]
+        ]
+      },
+      en: {
+        lang: "en",
+        dir: "ltr",
+        btn: "عربي",
+        brandName: "Bavarian Health Care Clinic",
+        brandSub: "عيادات بافاريان التخصصية",
+        badge: "Healthcare by German Standards",
+        heroTitle: "Dr. Abdelrahman Elsharkawy",
+        heroDesc: "German expert and lecturer in cardiovascular medicine, senior consultant in cardiology, cardiac catheterization & pacemakers, and fellow/consultant at Deutsches Herzzentrum München.",
+        waMainBtn: "WhatsApp (01107221974) ⭐",
+        waSecBtn: "WhatsApp (01107221964)",
+        callBtn: "Call Now",
+        clinicsTitle: "Specialized Clinics",
+        devicesTitle: "Devices & Diagnostics",
+        teamTitle: "Consultants & Medical Team",
+        contactTitle: "Locations & Contact",
+        cairoTitle: "Cairo Branch",
+        cairoAddr: "CITY CARE Medical Center - Gardenia City Compound, Nasr City, Suez Road",
+        cairoPhones: "Tel: 01107221974 / 01107221964",
+        cairoEmail: "Email: gardinia@bavarianhcc.de",
+        deTitle: "Main Branch (Germany)",
+        deAddr: "Cardiology & Sports Cardiology Center – Munich area (Bavaria)",
+        dePhones: "Tel: +49 8443 5783999 | Fax: +49 8443 5783990",
+        deWeb: "Web: www.bavarianhcc.de | www.kardiologie-lkpfaffenhofen.de",
+        fbLink: "Facebook (@bavarianhealthcareclinic)",
+        igLink: "Instagram (@bavarianhealthcareclinic)",
+        siteLink: "Website",
+        clinics: [
+          ["Heart Failure Clinic", "Early detection and follow-up in cooperation with Deutsches Herzzentrum München."],
+          ["Lipid Disorders Clinic", "Early detection and follow-up for adults and children with German Atherosclerosis Society guidance."],
+          ["Sports Cardiology (Coming Soon)", "Cardiac rehabilitation and athlete monitoring including CPET & lactate testing with Prof. Martin Halle."],
+          ["Genetics, Sleep, Arrhythmia & Devices", "Genetic testing (Synlab), sleep apnea diagnostics, arrhythmia/AFib, and pacemaker clinics."]
+        ],
+        devices: [
+          ["Holter (Up to 14 Days)", "Wire-free continuous AI-supported ECG recording with report review from Munich."],
+          ["Home Sleep Study", "Sleep apnea screening for infants, children, and adults."],
+          ["24h BP & Pulmonary Function", "24-hour blood pressure monitoring and respiratory efficiency testing."],
+          ["Echo, Ultrasound/Doppler & CPET", "Cardiac echo, abdominal/pelvic ultrasound, Doppler, InBody, CPET, and lactate testing."]
+        ],
+        team: [
+          ["Prof. Dr. Mohamed Saad Abu El-Nour", "Deputy Head of Cardiology, Kiel University; structural catheterization & heart valve expert."],
+          ["Prof. Dr. Lamia Allam", "Professor of Cardiac Electrophysiology, Ain Shams University; arrhythmia & pacemaker consultant."],
+          ["Prof. Dr. Yasmin Abdel Razek", "Professor of Cardiology, Ain Shams University; pediatric & congenital heart consultant."],
+          ["Consultants & Specialists", "Dr. Ghada Attia, Dr. Ahmed Mohamed Toeima, Dr. Asmaa Gamal El-Din, Dr. Salwa Hassib, Prof. Dr. Heba Saeed & specialists."]
+        ]
+      }
+    };
+
+    let current = "ar";
+
+    function renderList(id, arr) {
+      const el = document.getElementById(id);
+      el.innerHTML = arr.map(([title, desc]) =>
+        `<div class="item"><strong>${title}</strong><p>${desc}</p></div>`
+      ).join("");
+    }
+
+    function applyLang(code) {
+      const d = content[code];
+      document.documentElement.lang = d.lang;
+      document.documentElement.dir = d.dir;
+
+      [
+        "brandName", "brandSub", "badge", "heroTitle", "heroDesc",
+        "waMainBtn", "waSecBtn", "callBtn", "clinicsTitle", "devicesTitle",
+        "teamTitle", "contactTitle", "cairoTitle", "cairoAddr", "cairoPhones",
+        "cairoEmail", "deTitle", "deAddr", "dePhones", "deWeb",
+        "fbLink", "igLink", "siteLink"
+      ].forEach((key) => {
+        const target = document.getElementById(key === "badge" ? "badgeText" : key);
+        if (target) target.textContent = d[key];
+      });
+
+      document.getElementById("langBtn").textContent = d.btn;
+      renderList("clinicsGrid", d.clinics);
+      renderList("devicesGrid", d.devices);
+      renderList("teamGrid", d.team);
+    }
+
+    function switchLang() {
+      current = current === "ar" ? "en" : "ar";
+      applyLang(current);
+    }
+
+    applyLang("ar");
+  </script>
+</body>
+</html>
