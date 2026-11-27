@@ -236,7 +236,7 @@
       color: var(--white);
       border-bottom: 4px solid var(--de-crimson);
       border-radius: 10px;
-      padding: 28px 22px;
+      padding: 24px 20px;
       text-align: center;
       box-shadow: var(--shadow);
       margin-bottom: 24px;
@@ -304,25 +304,20 @@
       border: 1px solid var(--line);
     }
 
-    .spec-card-body {
+    .spec-card-media {
       background: var(--soft-bg);
-      padding: 28px 22px;
-      min-height: 150px;
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      gap: 6px;
+      align-items: center;
+      overflow: hidden;
     }
 
-    .spec-card-body strong {
-      font-size: 0.84rem;
-      color: var(--de-crimson);
-      font-weight: 800;
-    }
-
-    .spec-card-body p {
-      font-size: 0.95rem;
-      color: var(--muted);
+    .spec-card-media img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
     }
 
     .spec-card-caption {
@@ -694,6 +689,10 @@
       .acc-cards {
         grid-template-columns: 1fr;
       }
+
+      .spec-card-media img {
+        max-height: 430px;
+      }
     }
   </style>
 </head>
@@ -764,19 +763,26 @@
 
       <section class="specialty-list" id="clinics">
         <article class="spec-card">
-          <div class="spec-card-body">
-            <strong data-i18n="c1Tag">قصور عضلة القلب</strong>
-            <p data-i18n="c1Desc">متابعة تخصصية مستمرة لدعم مرضى قصور عضلة القلب وتنظيم الخطة العلاجية.</p>
+          <div class="spec-card-media">
+            <img src="img_9_1794721479418.jpg" alt="Herzlich Willkommen Bavarian Clinic" />
           </div>
           <div class="spec-card-caption">
-            <h2 data-i18n="c1Caption">عيادة قصور عضلة القلب: متابعة متخصصة لمرضى ضعف القلب</h2>
+            <h2 data-i18n="c0Caption">رعاية قلبية وباطنية متخصصة بترحيب واهتمام شخصي</h2>
           </div>
         </article>
 
         <article class="spec-card">
-          <div class="spec-card-body">
-            <strong data-i18n="c2Tag">الدهون والوقاية</strong>
-            <p data-i18n="c2Desc">فحص ومتابعة الكوليسترول والدهون والوقاية المبكرة من أمراض الشرايين.</p>
+          <div class="spec-card-media">
+            <img src="img_4_1794721407710.jpg" alt="Herz Ultraschall Echokardiographie" />
+          </div>
+          <div class="spec-card-caption">
+            <h2 data-i18n="c1Caption">عيادة قصور عضلة القلب وموجات القلب الصوتية: متابعة متخصصة لمرضى ضعف القلب</h2>
+          </div>
+        </article>
+
+        <article class="spec-card">
+          <div class="spec-card-media">
+            <img src="img_8_1794721457065.jpg" alt="Cholesterin Lipid Care" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c2Caption">عيادة الدهون لصحة قلبية ووعائية مثالية</h2>
@@ -784,9 +790,8 @@
         </article>
 
         <article class="spec-card">
-          <div class="spec-card-body">
-            <strong data-i18n="c3Tag">القلب الرياضي</strong>
-            <p data-i18n="c3Desc">تقييم القلب للرياضيين وممارسي الرياضة لتحسين الأداء والاطمئنان الصحي.</p>
+          <div class="spec-card-media">
+            <img src="img_1_1794721341145.jpg" alt="Herzgesund Trainieren Sports Cardiology" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c3Caption">عيادة القلب الرياضية لتحسين الكفاءة والأداء البدني</h2>
@@ -794,12 +799,20 @@
         </article>
 
         <article class="spec-card">
-          <div class="spec-card-body">
-            <strong data-i18n="c4Tag">الاستشارات الوراثية</strong>
-            <p data-i18n="c4Desc">استشارات متخصصة في أمراض القلب والباطنة ذات الطابع الوراثي.</p>
+          <div class="spec-card-media">
+            <img src="img_3_1794721392054.jpg" alt="Herzrhythmusstoerungen Rhythm Care" />
           </div>
           <div class="spec-card-caption">
-            <h2 data-i18n="c4Caption">استشارات وراثية متخصصة في أمراض القلب والباطنة</h2>
+            <h2 data-i18n="c4Caption">متابعة اضطرابات النبض والاستشارات الوراثية في القلب والباطنة</h2>
+          </div>
+        </article>
+
+        <article class="spec-card">
+          <div class="spec-card-media">
+            <img src="img_5_1794721421346.jpg" alt="Belastungs EKG Stress ECG" />
+          </div>
+          <div class="spec-card-caption">
+            <h2 data-i18n="c5Caption">فحص رسم القلب بالمجهود وتقييم الأداء القلبي والضغط</h2>
           </div>
         </article>
       </section>
@@ -966,18 +979,12 @@
         heroTitle: 'رعاية صحية وقلبية متخصصة بمعايير ألمانية',
         heroDesc: 'Bavarian Health Care Clinic بإشراف د. عبدالرحمن الشرقاوي — متابعة متخصصة لأمراض القلب والباطنة مع إمكانية الاستشارة والمتابعة عن بُعد للحالات المناسبة.',
         bookDoctolib: 'حجز موعد Doctolib',
-        c1Tag: 'قصور عضلة القلب',
-        c1Desc: 'متابعة تخصصية مستمرة لدعم مرضى قصور عضلة القلب وتنظيم الخطة العلاجية.',
-        c1Caption: 'عيادة قصور عضلة القلب: متابعة متخصصة لمرضى ضعف القلب',
-        c2Tag: 'الدهون والوقاية',
-        c2Desc: 'فحص ومتابعة الكوليسترول والدهون والوقاية المبكرة من أمراض الشرايين.',
+        c0Caption: 'رعاية قلبية وباطنية متخصصة بترحيب واهتمام شخصي',
+        c1Caption: 'عيادة قصور عضلة القلب وموجات القلب الصوتية: متابعة متخصصة لمرضى ضعف القلب',
         c2Caption: 'عيادة الدهون لصحة قلبية ووعائية مثالية',
-        c3Tag: 'القلب الرياضي',
-        c3Desc: 'تقييم القلب للرياضيين وممارسي الرياضة لتحسين الأداء والاطمئنان الصحي.',
         c3Caption: 'عيادة القلب الرياضية لتحسين الكفاءة والأداء البدني',
-        c4Tag: 'الاستشارات الوراثية',
-        c4Desc: 'استشارات متخصصة في أمراض القلب والباطنة ذات الطابع الوراثي.',
-        c4Caption: 'استشارات وراثية متخصصة في أمراض القلب والباطنة',
+        c4Caption: 'متابعة اضطرابات النبض والاستشارات الوراثية في القلب والباطنة',
+        c5Caption: 'فحص رسم القلب بالمجهود وتقييم الأداء القلبي والضغط',
         aboutTitle: 'أمراض القلب والباطنة بخبرة سريرية',
         aboutP1: 'تقدم Bavarian Health Care Clinic بإشراف د. عبدالرحمن الشرقاوي رعاية طبية متخصصة في أمراض القلب والباطنة، مع إمكانية الاستشارة والمتابعة عن بُعد للحالات المناسبة.',
         aboutP2: 'منذ بدايته الطبية في القاهرة عام 2005 واستكمال خبرته في المستشفيات الجامعية والمراكز الكبرى في ألمانيا منذ عام 2013، يركز على قصور القلب والدهون واضطرابات النبض والوقاية المبكرة.',
@@ -1018,18 +1025,12 @@
         heroTitle: 'Specialized Cardiac & Internal Medicine Care with German Standards',
         heroDesc: 'Bavarian Health Care Clinic under Dr. Abdelrahman Elsharkawy — dedicated cardiology and internal medicine follow-up, with remote consultation where appropriate.',
         bookDoctolib: 'Book on Doctolib',
-        c1Tag: 'Heart Failure Care',
-        c1Desc: 'Ongoing specialized follow-up supporting patients with heart failure.',
-        c1Caption: 'Heart Failure Clinic: Specialized follow-up for heart failure care',
-        c2Tag: 'Lipid & Prevention',
-        c2Desc: 'Lipid and cholesterol follow-up with early cardiovascular prevention.',
+        c0Caption: 'Specialized Cardiac & Internal Medicine Care with Personal Welcome',
+        c1Caption: 'Heart Failure & Echocardiography: Specialized follow-up for heart failure care',
         c2Caption: 'Lipid Care for optimal heart and vascular health',
-        c3Tag: 'Sports Cardiology',
-        c3Desc: 'Cardiovascular assessment for athletes and active individuals.',
         c3Caption: 'Sports Cardiology for improved physical performance',
-        c4Tag: 'Genetic Counseling',
-        c4Desc: 'Specialized hereditary counseling in cardiology and internal medicine.',
-        c4Caption: 'Specialized genetic counseling in cardiology and internal medicine',
+        c4Caption: 'Rhythm Care & Specialized Genetic Counseling in Cardiology',
+        c5Caption: 'Stress ECG & Cardiovascular Performance Evaluation',
         aboutTitle: 'Cardiology & Internal Medicine with Clinical Expertise',
         aboutP1: 'Bavarian Health Care Clinic under Dr. Abdelrahman Elsharkawy provides specialized care in cardiology and internal medicine, including remote follow-up where appropriate.',
         aboutP2: 'Beginning in Cairo in 2005 and continuing across university hospitals and major medical centers in Germany since 2013, care focuses on heart failure, lipids, rhythm care, and prevention.',
