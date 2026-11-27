@@ -47,7 +47,6 @@
       color: inherit;
     }
 
-    /* Top Header matching German clinic style */
     header {
       position: sticky;
       top: 0;
@@ -178,24 +177,32 @@
       color: var(--de-blue);
     }
 
-    /* Fixed Right-Side Doctolib Widget */
+    /* Fixed Right-Side Doctolib Widget - Active & Clickable */
     .doctolib-fixed {
       position: fixed;
       right: 0;
       top: 52%;
       transform: translateY(-50%);
-      z-index: 75;
+      z-index: 95;
+      pointer-events: auto;
       background: #1e88e5;
       color: var(--white);
       border-radius: 8px 0 0 8px;
       padding: 10px 8px;
-      width: 90px;
+      width: 92px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
-      box-shadow: -4px 8px 22px rgba(0, 0, 0, 0.18);
+      box-shadow: -4px 8px 22px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .doctolib-fixed:hover {
+      background: #1565c0;
+      transform: translateY(-50%) translateX(-2px);
     }
 
     .doctolib-fixed-box {
@@ -208,12 +215,14 @@
       font-weight: 800;
       line-height: 1.25;
       width: 100%;
+      pointer-events: none;
     }
 
     .doctolib-fixed-title {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--white);
+      pointer-events: none;
     }
 
     .page-wrap {
@@ -222,7 +231,6 @@
       padding: 20px 16px 40px;
     }
 
-    /* Hero Strip with German Blue & Crimson Accent */
     .hero-banner {
       background: linear-gradient(135deg, var(--de-blue-dark), var(--de-blue));
       color: var(--white);
@@ -281,7 +289,6 @@
       border-color: rgba(255, 255, 255, 0.25);
     }
 
-    /* Specialty Cards with Blue Caption Strip at Bottom (matching screenshots) */
     .specialty-list {
       display: flex;
       flex-direction: column;
@@ -332,7 +339,6 @@
       color: var(--white);
     }
 
-    /* About & Clinical Section */
     .section-box {
       padding: 28px 18px;
       text-align: center;
@@ -353,7 +359,6 @@
       text-align: start;
     }
 
-    /* Icon Highlights (matching outline medical icons) */
     .icon-highlights {
       display: flex;
       flex-direction: column;
@@ -377,7 +382,6 @@
       color: var(--ink);
     }
 
-    /* Dark Call & Booking Banner (matching phone icon + call & booking buttons) */
     .dark-cta-banner {
       background: linear-gradient(135deg, rgba(16, 53, 99, 0.94), rgba(20, 40, 75, 0.94));
       color: var(--white);
@@ -432,7 +436,6 @@
       gap: 8px;
     }
 
-    /* Accreditations at Bottom */
     .acc-section {
       padding: 24px 16px 34px;
       text-align: center;
@@ -472,7 +475,6 @@
       color: var(--muted);
     }
 
-    /* Final Closing Sheet Block: Logo + Title + Doctor + Address + Contact */
     .closing-sheet {
       padding: 34px 16px 24px;
       text-align: center;
@@ -560,7 +562,6 @@
       text-decoration: none;
     }
 
-    /* Assistant Button on Left so Right Doctolib Tab Stays Clear */
     .assistant-fab {
       position: fixed;
       bottom: 18px;
@@ -697,7 +698,14 @@
   </style>
 </head>
 <body>
-  <a href="https://www.doctolib.de/einzelpraxis/hohenwart/elsharkawy-abdelrahman" target="_blank" rel="noopener noreferrer" class="doctolib-fixed" aria-label="Doctolib Booking">
+  <a
+    id="doctolibFloatingLink"
+    href="https://www.doctolib.de/einzelpraxis/hohenwart/elsharkawy-abdelrahman"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="doctolib-fixed"
+    aria-label="Termin Online buchen Doctolib"
+  >
     <div class="doctolib-fixed-box" data-i18n="docBox">حجز موعد أونلاين</div>
     <span class="doctolib-fixed-title">Doctolib</span>
   </a>
@@ -929,8 +937,17 @@
 
   <script>
     const LOGO_PATH = 'Bavarian_Logo_Emblem_Only_for_LightBG.png';
+    const DOCTOLIB_URL = 'https://www.doctolib.de/einzelpraxis/hohenwart/elsharkawy-abdelrahman';
+
     document.getElementById('headerLogo').src = LOGO_PATH;
     document.getElementById('closingLogo').src = LOGO_PATH;
+
+    const doctolibFloatingLink = document.getElementById('doctolibFloatingLink');
+    if (doctolibFloatingLink) {
+      doctolibFloatingLink.setAttribute('href', DOCTOLIB_URL);
+      doctolibFloatingLink.setAttribute('target', '_blank');
+      doctolibFloatingLink.setAttribute('rel', 'noopener noreferrer');
+    }
 
     const i18n = {
       ar: {
