@@ -763,7 +763,7 @@
       <section class="specialty-list" id="clinics">
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="05_willkommen.jpg" alt="Herzlich Willkommen Bavarian Clinic" />
+            <img class="lang-img" src="05_willkommen.jpg" data-src-ar="05_willkommen.jpg" data-src-en="05_willkommen_en.jpg" alt="Herzlich Willkommen Bavarian Clinic" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c0Caption">رعاية قلبية وباطنية متخصصة بترحيب واهتمام شخصي</h2>
@@ -772,7 +772,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="03_herzinsuffizienz.jpg" alt="Herzinsuffizienz Heart Failure Care" />
+            <img class="lang-img" src="03_herzinsuffizienz.jpg" data-src-ar="03_herzinsuffizienz.jpg" data-src-en="03_herzinsuffizienz_en.jpg" alt="Herzinsuffizienz Heart Failure Care" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c1Caption">عيادة قصور عضلة القلب: متابعة متخصصة لمرضى ضعف القلب</h2>
@@ -781,7 +781,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="07_cholesterin.jpg" alt="Cholesterin Lipid Care" />
+            <img class="lang-img" src="07_cholesterin.jpg" data-src-ar="07_cholesterin.jpg" data-src-en="07_cholesterin_en.jpg" alt="Cholesterin Lipid Care" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c2Caption">عيادة الدهون لصحة قلبية ووعائية مثالية</h2>
@@ -790,7 +790,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="01_herzgesund.jpg" alt="Herzgesund Trainieren Sports Cardiology" />
+            <img class="lang-img" src="01_herzgesund.jpg" data-src-ar="01_herzgesund.jpg" data-src-en="01_herzgesund_en.jpg" alt="Herzgesund Trainieren Sports Cardiology" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c3Caption">عيادة القلب الرياضية لتحسين الكفاءة والأداء البدني</h2>
@@ -799,7 +799,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="04_herzrhythmus.jpg" alt="Herzrhythmusstoerungen Rhythm Care" />
+            <img class="lang-img" src="04_herzrhythmus.jpg" data-src-ar="04_herzrhythmus.jpg" data-src-en="04_herzrhythmus_en.jpg" alt="Herzrhythmusstoerungen Rhythm Care" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c4Caption">متابعة اضطرابات النبض والاستشارات الوراثية في القلب والباطنة</h2>
@@ -808,7 +808,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="06_herz_ultraschall.jpg" alt="Herz Ultraschall Echokardiographie" />
+            <img class="lang-img" src="06_herz_ultraschall.jpg" data-src-ar="06_herz_ultraschall.jpg" data-src-en="06_herz_ultraschall_en.jpg" alt="Herz Ultraschall Echokardiographie" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c5Caption">فحص موجات القلب الصوتية وتقييم كفاءة عضلة القلب والصمامات</h2>
@@ -817,7 +817,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="02_belastungs_ekg.jpg" alt="Belastungs EKG Stress ECG" />
+            <img class="lang-img" src="02_belastungs_ekg.jpg" data-src-ar="02_belastungs_ekg.jpg" data-src-en="02_belastungs_ekg_en.jpg" alt="Belastungs EKG Stress ECG" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c6Caption">فحص رسم القلب بالمجهود وتقييم الأداء القلبي والضغط</h2>
@@ -826,7 +826,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="08_clinic_inbody.jpg" alt="Clinic InBody Body Composition Assessment" />
+            <img class="lang-img" src="08_clinic_inbody.jpg" data-src-ar="08_clinic_inbody.jpg" data-src-en="08_clinic_inbody_en.jpg" alt="Clinic InBody Body Composition Assessment" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c7Caption">تقييم التكوين الجسماني واللياقة داخل العيادة</h2>
@@ -835,7 +835,7 @@
 
         <article class="spec-card">
           <div class="spec-card-media">
-            <img src="09_clinic_stress_test.jpg" alt="Clinic Stress Test Monitoring" />
+            <img class="lang-img" src="09_clinic_stress_test.jpg" data-src-ar="09_clinic_stress_test.jpg" data-src-en="09_clinic_stress_test_en.jpg" alt="Clinic Stress Test Monitoring" />
           </div>
           <div class="spec-card-caption">
             <h2 data-i18n="c8Caption">متابعة اختبار الجهد القلبي بأجهزة قياس متخصصة داخل العيادة</h2>
@@ -1092,6 +1092,17 @@
     let lang = 'ar';
     const langBtn = document.getElementById('langBtn');
 
+    function syncLanguageImages(nextLang) {
+      document.querySelectorAll('img.lang-img').forEach((img) => {
+        const arSrc = img.getAttribute('data-src-ar');
+        const enSrc = img.getAttribute('data-src-en');
+        const targetSrc = nextLang === 'en' ? (enSrc || arSrc) : (arSrc || enSrc);
+        if (targetSrc) {
+          img.src = targetSrc;
+        }
+      });
+    }
+
     function setLang(nextLang) {
       lang = nextLang;
       const d = i18n[nextLang];
@@ -1103,9 +1114,11 @@
         const k = el.getAttribute('data-i18n');
         if (d[k]) el.textContent = d[k];
       });
+      syncLanguageImages(nextLang);
     }
 
     langBtn.addEventListener('click', () => setLang(lang === 'ar' ? 'en' : 'ar'));
+    syncLanguageImages(lang);
 
     const menuBtn = document.getElementById('menuBtn');
     const navDrawer = document.getElementById('navDrawer');
