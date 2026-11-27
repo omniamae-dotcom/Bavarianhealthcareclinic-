@@ -3,468 +3,1159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bavarian Health Care Clinic | عيادات بافاريان التخصصية</title>
+  <title>عيادات بافاريان التخصصية | Bavarian Specialized Clinics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --navy: #0f294a;
-      --red: #c81e3a;
-      --whatsapp: #16a34a;
-      --whatsapp-dark: #15803d;
-      --bg: #f4f7fb;
-      --card: rgba(255, 255, 255, 0.94);
-      --text: #1e293b;
-      --muted: #55657d;
-      --border: #e2e8f0;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      position: relative;
-      overflow-x: hidden;
+      --navy: #0b1f3a;
+      --navy-2: #122d54;
+      --navy-deep: #071426;
+      --crimson-dark: #4a0b15;
+      --crimson: #66101e;
+      --crimson-accent: #8a1829;
+      --crimson-soft: rgba(102, 16, 30, 0.08);
+      --white: #ffffff;
+      --white-soft: #fafbfd;
+      --surface: #ffffff;
+      --text: #0b1f3a;
+      --muted: #4b5b73;
+      --border: rgba(74, 11, 21, 0.2);
+      --shadow: 0 16px 36px rgba(11, 31, 58, 0.06);
+      --radius: 20px;
     }
 
-    .page-watermark {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.78;
+      letter-spacing: -0.005em;
+      position: relative;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background-color: var(--white);
+      background-image:
+        radial-gradient(circle at 10% 8%, rgba(11, 31, 58, 0.03), transparent 36%),
+        radial-gradient(circle at 90% 16%, rgba(74, 11, 21, 0.03), transparent 40%),
+        linear-gradient(180deg, #ffffff 0%, #fcfdfe 55%, #ffffff 100%);
+    }
+
+    body.lang-en {
+      font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    h1, h2, h3, strong {
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    p {
+      font-weight: 400;
+    }
+
+    a {
+      color: var(--navy);
+    }
+
+    .top-accent-bar {
+      height: 5px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--crimson-dark) 50%, var(--navy) 100%);
+    }
+
+    .watermark-layer {
       position: fixed;
-      inset: 50% auto auto 50%;
-      transform: translate(-50%, -50%) rotate(-12deg);
-      width: min(72vw, 460px);
-      height: auto;
-      opacity: 0.055;
+      inset: 0;
       pointer-events: none;
-      user-select: none;
       z-index: 0;
-      filter: grayscale(15%);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      place-items: center;
+      gap: 54px;
+      padding: 44px;
+      opacity: 0.045;
+    }
+
+    .watermark-layer img {
+      width: min(215px, 34vw);
+      height: auto;
+      object-fit: contain;
+      transform: rotate(-16deg);
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .page-content {
+      position: relative;
+      z-index: 1;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 16px;
+      width: min(1160px, 92%);
+      margin-inline: auto;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      background: var(--card);
-      backdrop-filter: blur(8px);
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
       position: sticky;
-      top: 10px;
-      z-index: 10;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
-    .brand-wrap {
+
+    .nav-wrap {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 78px;
     }
-    .header-logo {
-      height: 40px;
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      text-decoration: none;
+      color: var(--navy);
+    }
+
+    .brand img {
+      height: 54px;
       width: auto;
-      max-width: 105px;
       object-fit: contain;
-      display: block;
-      background: transparent;
-      border: none;
-      padding: 0;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
     }
+
     .brand-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
+    }
+
+    .brand-title strong {
+      font-size: 1.04rem;
       font-weight: 800;
       color: var(--navy);
-      font-size: 0.98rem;
     }
-    .brand-sub {
-      font-size: 0.78rem;
+
+    .brand-title span {
+      font-size: 0.8rem;
       color: var(--muted);
+      font-weight: 600;
     }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.96rem;
+      line-height: 1.5;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--crimson-dark);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0;
+      height: 2px;
+      background: var(--crimson-dark);
+      transform: scaleX(0);
+      transition: transform 0.22s ease;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .lang-btn {
       background: var(--navy);
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 9px;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      margin-top: 16px;
-      background: linear-gradient(135deg, var(--navy), #1d4273);
-      color: #fff;
-      padding: 28px 22px;
-      border-radius: 16px;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 680px;
-    }
-    .hero-watermark {
-      position: absolute;
-      inset-inline-end: -18px;
-      bottom: -24px;
-      width: 210px;
-      height: auto;
-      opacity: 0.14;
-      pointer-events: none;
-      user-select: none;
-      z-index: 1;
-      background: transparent;
-      border: none;
-      padding: 0;
-    }
-
-    .badge {
-      display: inline-block;
-      background: var(--red);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 10px;
+      color: #ffffff;
+      border: 1px solid var(--crimson-dark);
+      padding: 8px 15px;
       border-radius: 999px;
-      margin-bottom: 10px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: 1.55rem;
+
+    .lang-btn:hover {
+      background: var(--navy-2);
     }
-    .hero p {
-      margin: 0;
-      color: #e2e8f0;
-      font-size: 0.96rem;
-    }
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 10px;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-family: inherit;
       font-weight: 700;
-      font-size: 0.9rem;
-      color: #fff;
-      background: var(--navy);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 0.92rem;
+      line-height: 1.35;
+      text-decoration: none;
+      border: 1px solid transparent;
       cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
-    .btn-wa-main {
-      background: var(--whatsapp);
-      border-color: transparent;
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.35);
+
+    .btn:hover {
+      transform: translateY(-1px);
     }
-    .btn-wa-sec {
-      background: var(--whatsapp-dark);
-      border-color: rgba(255, 255, 255, 0.2);
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--navy), var(--navy-2));
+      color: #ffffff;
+      border-color: rgba(74, 11, 21, 0.45);
+      box-shadow: 0 8px 20px rgba(11, 31, 58, 0.14);
     }
+
+    .btn-crimson {
+      background: linear-gradient(135deg, var(--crimson-dark), var(--crimson));
+      color: #ffffff;
+      border-color: rgba(74, 11, 21, 0.7);
+      box-shadow: 0 8px 20px rgba(74, 11, 21, 0.18);
+    }
+
     .btn-outline {
-      background: rgba(255, 255, 255, 0.12);
-    }
-    section {
-      margin-top: 18px;
-      background: var(--card);
-      backdrop-filter: blur(6px);
-      padding: 20px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-    section h2 {
-      margin: 0 0 12px;
-      font-size: 1.2rem;
+      background: #ffffff;
       color: var(--navy);
-      border-inline-start: 4px solid var(--red);
-      padding-inline-start: 10px;
+      border-color: var(--border);
     }
-    .grid {
+
+    .hero {
+      padding: 50px 0 42px;
+    }
+
+    .hero-panel {
+      background: linear-gradient(155deg, #ffffff 0%, var(--white-soft) 100%);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy), var(--crimson-dark), var(--navy));
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--crimson-soft);
+      color: var(--crimson-dark);
+      border: 1px solid rgba(74, 11, 21, 0.3);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.9rem, 3.5vw, 2.85rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-bottom: 24px;
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
-    .item {
-      background: rgba(248, 250, 252, 0.9);
+
+    .highlight-card {
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
+      border-top: 3px solid var(--crimson-dark);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 8px 20px rgba(11, 31, 58, 0.04);
     }
-    .item strong {
+
+    .highlight-card strong {
       display: block;
       color: var(--navy);
-      margin-bottom: 4px;
+      font-size: 0.98rem;
+      line-height: 1.4;
+      margin-bottom: 5px;
     }
-    .item p {
-      margin: 0;
-      font-size: 0.9rem;
+
+    .highlight-card span {
+      display: block;
       color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+      line-height: 1.55;
     }
-    .contact-box {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-      font-size: 0.9rem;
-    }
-    .contact-card {
-      background: rgba(248, 250, 252, 0.9);
+
+    .booking-card {
+      background: #ffffff;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
+      border-top: 4px solid var(--crimson-dark);
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: var(--shadow);
     }
-    .contact-card p {
-      margin: 6px 0;
+
+    .booking-card h2 {
+      font-size: 1.32rem;
+      line-height: 1.4;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .booking-card .sub {
+      font-size: 0.89rem;
+      line-height: 1.65;
       color: var(--muted);
+      margin-bottom: 18px;
     }
-    .social-links {
+
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.87rem;
+      font-weight: 700;
+      line-height: 1.45;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1px solid rgba(74, 11, 21, 0.22);
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text);
+      background: #ffffff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--crimson-dark);
+      background: #ffffff;
+    }
+
+    section {
+      padding: 46px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 30px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 26px;
+      box-shadow: 0 8px 22px rgba(11, 31, 58, 0.04);
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.48rem, 2.6vw, 2.08rem);
+      line-height: 1.35;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .section-divider {
+      width: 78px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--crimson-dark));
+      margin: 0 auto 12px;
+      border-radius: 999px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--crimson-dark);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-card h3 {
+      color: var(--navy);
+      font-size: 1.14rem;
+      line-height: 1.45;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--navy-deep), var(--navy) 55%, var(--navy-2));
+      color: #ffffff;
+      border: 1px solid rgba(138, 24, 41, 0.65);
+      border-top: 4px solid var(--crimson-accent);
+      border-radius: 24px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      box-shadow: 0 22px 46px rgba(11, 31, 58, 0.14);
+    }
+
+    .contact-box h2 {
+      font-size: 1.68rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .contact-box p {
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 18px;
+      font-size: 0.96rem;
+      line-height: 1.75;
+    }
+
+    .contact-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 12px;
+      margin-bottom: 18px;
     }
-    .social-btn {
+
+    .social-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .social-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--crimson-dark), var(--crimson-accent));
+      color: #ffffff;
       text-decoration: none;
-      padding: 9px 14px;
-      border-radius: 10px;
-      font-size: 0.88rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .social-icon-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    footer {
+      border-top: 2px solid var(--border);
+      background: #ffffff;
+      padding: 24px 0;
+      margin-top: 24px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .assistant-fab {
+      position: fixed;
+      bottom: 22px;
+      inset-inline-end: 22px;
+      z-index: 80;
+      background: var(--navy);
+      color: #ffffff;
+      border: 2px solid var(--crimson-dark);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-family: inherit;
       font-weight: 700;
-      color: var(--navy);
-      background: #f1f5f9;
+      font-size: 0.92rem;
+      line-height: 1.3;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(11, 31, 58, 0.22);
+    }
+
+    .assistant-panel {
+      position: fixed;
+      bottom: 82px;
+      inset-inline-end: 22px;
+      width: min(360px, calc(100vw - 32px));
+      background: #ffffff;
       border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 20px 44px rgba(11, 31, 58, 0.2);
+      z-index: 85;
+      display: none;
+      overflow: hidden;
+    }
+
+    .assistant-panel.open {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .assistant-head {
+      background: var(--navy);
+      color: #ffffff;
+      border-bottom: 2px solid var(--crimson-dark);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .assistant-head strong {
+      font-size: 0.98rem;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+
+    .assistant-close {
+      background: transparent;
+      border: 0;
+      color: #ffffff;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+    .assistant-body {
+      padding: 14px;
+      max-height: 290px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .msg {
+      padding: 10px 13px;
+      border-radius: 13px;
+      font-size: 0.89rem;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .msg-bot {
+      background: var(--white-soft);
+      border: 1px solid rgba(11, 31, 58, 0.08);
+      color: var(--text);
+      align-self: flex-start;
+    }
+
+    .msg-user {
+      background: var(--crimson-dark);
+      color: #ffffff;
+      align-self: flex-end;
+    }
+
+    .quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 14px 10px;
+    }
+
+    .quick-chip {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-family: inherit;
+      font-size: 0.79rem;
+      font-weight: 700;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+
+    .assistant-input {
+      display: flex;
+      border-top: 1px solid var(--border);
+      padding: 8px;
+      gap: 6px;
+    }
+
+    .assistant-input input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-family: inherit;
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--text);
+      background: #ffffff;
+    }
+
+    .assistant-input button {
+      background: linear-gradient(135deg, var(--crimson-dark), var(--crimson));
+      color: #ffffff;
+      border: 0;
+      border-radius: 10px;
+      padding: 0 14px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-panel {
+        padding: 22px;
+      }
+
+      .hero-grid,
+      .contact-box,
+      .cards-grid,
+      .highlights {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <img
-    src="Bavarian_Logo_Emblem_Only_for_LightBG.png"
-    alt=""
-    aria-hidden="true"
-    class="page-watermark"
-  />
+  <div class="top-accent-bar" aria-hidden="true"></div>
 
-  <div class="container">
+  <div class="watermark-layer" aria-hidden="true">
+    <img class="clinic-watermark-img" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="" />
+    <img class="clinic-watermark-img" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="" />
+    <img class="clinic-watermark-img" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="" />
+    <img class="clinic-watermark-img" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="" />
+    <img class="clinic-watermark-img" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="" />
+    <img class="clinic-watermark-img" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="" />
+  </div>
+
+  <div class="page-content">
     <header>
-      <div class="brand-wrap">
-        <img
-          src="Bavarian_Logo_Transparent_for_LightBG.png"
-          alt="Bavarian Health Care Clinic Logo"
-          class="header-logo"
-        />
-        <div>
-          <div class="brand-title" id="brandName">عيادات بافاريان التخصصية</div>
-          <div class="brand-sub" id="brandSub">Bavarian Health Care Clinic</div>
+      <div class="container nav-wrap">
+        <a href="#top" class="brand">
+          <img id="mainLogoImg" src="Bavarian_Logo_Emblem_Only_for_LightBG.png" alt="Bavarian Specialized Clinics Logo" />
+          <div class="brand-title">
+            <strong data-i18n="brandName">عيادات بافاريان التخصصية</strong>
+            <span data-i18n="brandSub">د. عبدالرحمن الشرقاوي — أمراض وقسطرة القلب</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#services" data-i18n="navServices">التخصصات</a></li>
+          <li><a href="#about" data-i18n="navAbout">عن الطبيب</a></li>
+          <li><a href="#contact" data-i18n="navContact">التواصل والحجز</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button type="button" class="lang-btn" id="langToggle">EN</button>
+          <a href="#booking" class="btn btn-crimson" data-i18n="bookNow">احجز موعداً</a>
         </div>
       </div>
-      <button type="button" class="lang-btn" id="langBtn" onclick="switchLang()">EN</button>
     </header>
 
-    <section class="hero">
-      <img
-        src="Bavarian_Logo_Emblem_Only_for_DarkBG.png"
-        alt=""
-        aria-hidden="true"
-        class="hero-watermark"
-      />
-      <div class="hero-content">
-        <div class="badge" id="badgeText">رعاية صحية بمعايير ألمانية</div>
-        <h1 id="heroTitle">د. عبدالرحمن الشرقاوي</h1>
-        <p id="heroDesc">
-          الخبير الألماني والمحاضر في أمراض القلب والأوعية الدموية، استشاري أول أمراض القلب والأوعية الدموية وقسطرة القلب والمنظمات، وزميل واستشاري القلب بـ Deutsches Herzzentrum München.
-        </p>
-        <div class="actions">
-          <a class="btn btn-wa-main" id="waMainBtn" href="https://wa.me/201107221974">واتساب (01107221974) ⭐</a>
-          <a class="btn btn-wa-sec" id="waSecBtn" href="https://wa.me/201107221964">واتساب (01107221964)</a>
-          <a class="btn btn-outline" id="callBtn" href="tel:+201107221974">اتصال مباشر</a>
+    <main id="top">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-panel">
+            <div class="hero-grid">
+              <div>
+                <div class="badge" data-i18n="heroBadge">زميل Deutsches Herzzentrum München</div>
+                <h1 data-i18n="heroTitle">رعاية قلبية متخصصة بمعايير طبية ألمانية دقيقة</h1>
+                <p data-i18n="heroDesc">
+                  بإشراف د. عبدالرحمن الشرقاوي — استشاري أول أمراض القلب وقسطرة القلب والمنظمات، لتشخيص ومتابعة حالات القلب والأوعية الدموية واضطرابات النبض بأحدث الأساليب الطبية.
+                </p>
+
+                <div class="hero-cta">
+                  <a href="https://wa.me/201107221974" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="waBtn1">
+                    واتساب 01107221974
+                  </a>
+                  <a href="https://wa.me/201107221964" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-i18n="waBtn2">
+                    واتساب 01107221964
+                  </a>
+                  <a href="tel:01107221974" class="btn btn-outline" data-i18n="callBtn">اتصال مباشر</a>
+                  <a href="https://www.doctolib.de/" target="_blank" rel="noopener noreferrer" class="btn btn-crimson" data-i18n="doctolibBtn">
+                    Doctolib
+                  </a>
+                </div>
+
+                <div class="highlights">
+                  <div class="highlight-card">
+                    <strong data-i18n="h1Title">قسطرة القلب</strong>
+                    <span data-i18n="h1Desc">تقييم وتشخيص دقيق للشرايين التاجية</span>
+                  </div>
+                  <div class="highlight-card">
+                    <strong data-i18n="h2Title">منظمات ضربات القلب</strong>
+                    <span data-i18n="h2Desc">متابعة وبرمجة الأجهزة والمنظمات القلبية</span>
+                  </div>
+                  <div class="highlight-card">
+                    <strong data-i18n="h3Title">استشارات متكاملة</strong>
+                    <span data-i18n="h3Desc">متابعة الضغط والذبذبة الأذينية وصحة القلب</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="booking-card" id="booking">
+                <h2 data-i18n="formTitle">نموذج حجز سريع عبر واتساب</h2>
+                <p class="sub" data-i18n="formSub">أدخل بياناتك وسيتم تجهيز طلب الحجز وإرساله مباشرة إلى واتساب العيادة.</p>
+
+                <form id="whatsappBookingForm">
+                  <div class="form-group">
+                    <label for="patientName" data-i18n="lblName">الاسم بالكامل</label>
+                    <input type="text" id="patientName" required placeholder="اكتب اسم المريض / Write full name" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="patientPhone" data-i18n="lblPhone">رقم الهاتف</label>
+                    <input type="tel" id="patientPhone" required placeholder="01xxxxxxxxx" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="whatsappLine" data-i18n="lblLine">رقم واتساب العيادة</label>
+                    <select id="whatsappLine">
+                      <option value="201107221974">01107221974</option>
+                      <option value="201107221964">01107221964</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="visitNotes" data-i18n="lblNotes">سبب الزيارة أو الموعد المفضل</label>
+                    <textarea id="visitNotes" rows="2" placeholder="كشف قلب / متابعة منظم / قسطرة..."></textarea>
+                  </div>
+
+                  <button type="submit" class="btn btn-crimson" style="width: 100%;" data-i18n="submitWa">
+                    إرسال طلب الحجز إلى واتساب
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2 id="clinicsTitle">العيادات التخصصية</h2>
-      <div class="grid" id="clinicsGrid"></div>
-    </section>
+      <section id="services">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-i18n="secServicesTitle">الخدمات والتخصصات الطبية</h2>
+            <div class="section-divider"></div>
+            <p data-i18n="secServicesSub">رعاية مبنية على الدقة التشخيصية والمتابعة المستمرة لكل مريض.</p>
+          </div>
 
-    <section>
-      <h2 id="devicesTitle">الأجهزة والفحوصات</h2>
-      <div class="grid" id="devicesGrid"></div>
-    </section>
-
-    <section>
-      <h2 id="teamTitle">نخبة الاستشاريين والفريق الطبي</h2>
-      <div class="grid" id="teamGrid"></div>
-    </section>
-
-    <section>
-      <h2 id="contactTitle">العناوين والتواصل</h2>
-      <div class="contact-box">
-        <div class="contact-card">
-          <strong id="cairoTitle">فرع القاهرة</strong>
-          <p id="cairoAddr">المركز الطبي CITY CARE - كومباوند جاردينيا سيتي – مدينة نصر – طريق السويس</p>
-          <p id="cairoPhones">هاتف: 01107221974 / 01107221964</p>
-          <p id="cairoEmail">إيميل: gardinia@bavarianhcc.de</p>
+          <div class="cards-grid">
+            <div class="info-card">
+              <h3 data-i18n="s1Title">أمراض وقسطرة القلب</h3>
+              <p data-i18n="s1Desc">تقييم آلام الصدر، قصور الشرايين التاجية، ومتابعة الحالات قبل وبعد القسطرة القلبية.</p>
+            </div>
+            <div class="info-card">
+              <h3 data-i18n="s2Title">منظمات القلب واضطرابات النبض</h3>
+              <p data-i18n="s2Desc">تشخيص تسارع أو بطء ضربات القلب، الذبذبة الأذينية، وضبط ومتابعة منظمات ضربات القلب.</p>
+            </div>
+            <div class="info-card">
+              <h3 data-i18n="s3Title">الوقاية والمتابعة الدورية</h3>
+              <p data-i18n="s3Desc">ضبط ضغط الدم والكوليسترول وتقييم عوامل الخطورة القلبية بخطة علاجية واضحة.</p>
+            </div>
+          </div>
         </div>
-        <div class="contact-card">
-          <strong id="deTitle">الفرع الرئيسي (ألمانيا)</strong>
-          <p id="deAddr">مركز أمراض القلب وطب القلب الرياضي – نطاق München (ولاية بافاريا)</p>
-          <p id="dePhones">هاتف: +49 8443 5783999 | فاكس: +49 8443 5783990</p>
-          <p id="deWeb">الموقع: www.bavarianhcc.de | www.kardiologie-lkpfaffenhofen.de</p>
-        </div>
-      </div>
+      </section>
 
-      <div class="social-links">
-        <a class="social-btn" id="fbLink" href="https://www.facebook.com/share/1ETr2KEvKR/?mibextid=wwXIfr">Facebook (@bavarianhealthcareclinic)</a>
-        <a class="social-btn" id="igLink" href="https://www.instagram.com/bavarianhealthcareclinic">Instagram (@bavarianhealthcareclinic)</a>
-        <a class="social-btn" id="siteLink" href="https://www.bavarianhcc.de">Website</a>
+      <section id="about">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-i18n="secAboutTitle">عن د. عبدالرحمن الشرقاوي</h2>
+            <div class="section-divider"></div>
+            <p data-i18n="secAboutSub">استشاري أول أمراض القلب وقسطرة القلب والمنظمات، وزميل Deutsches Herzzentrum München، يجمع بين الخبرة الإكلينيكية والاهتمام الإنساني بكل حالة.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="contact-box">
+            <div>
+              <h2 data-i18n="contactTitle">تواصل مع العيادة مباشرة</h2>
+              <p data-i18n="contactDesc">للاستفسارات وحجز المواعيد عبر الهاتف أو واتساب أو متابعة صفحاتنا الرسمية.</p>
+
+              <div class="contact-actions">
+                <a href="https://wa.me/201107221974" target="_blank" rel="noopener noreferrer" class="btn btn-crimson">WhatsApp: 01107221974</a>
+                <a href="https://wa.me/201107221964" target="_blank" rel="noopener noreferrer" class="btn btn-crimson">WhatsApp: 01107221964</a>
+                <a href="tel:01107221974" class="btn btn-outline" data-i18n="callBtn">اتصال مباشر</a>
+              </div>
+
+              <div class="social-row">
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook" class="social-icon-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
+                  </svg>
+                </a>
+
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram" class="social-icon-btn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25zM12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="info-card" style="background: rgba(255,255,255,0.08); border-color: rgba(138,24,41,0.65); border-top-color: var(--crimson-accent); color: #ffffff;">
+              <h3 style="color: #ffffff;" data-i18n="quickInfoTitle">معلومات سريعة</h3>
+              <p style="color: rgba(255,255,255,0.92); margin-bottom: 8px;" data-i18n="quickInfoDoc">د. عبدالرحمن الشرقاوي — زميل Deutsches Herzzentrum München</p>
+              <p style="color: rgba(255,255,255,0.84); margin-bottom: 8px;">WhatsApp: 01107221974 / 01107221964</p>
+              <a href="https://www.doctolib.de/" target="_blank" rel="noopener noreferrer" class="btn btn-crimson" style="margin-top: 6px;" data-i18n="doctolibBtn">
+                Doctolib
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span data-i18n="footerCopy">© عيادات بافاريان التخصصية — د. عبدالرحمن الشرقاوي. جميع الحقوق محفوظة.</span>
+        <span>01107221974 • 01107221964</span>
       </div>
-    </section>
+    </footer>
+  </div>
+
+  <button type="button" class="assistant-fab" id="assistantToggle" aria-expanded="false">
+    <span data-i18n="assistantBtn">المساعد الآلي</span>
+  </button>
+
+  <div class="assistant-panel" id="assistantPanel" role="dialog" aria-label="Bavarian Clinic Assistant">
+    <div class="assistant-head">
+      <strong data-i18n="assistantTitle">مساعد عيادات بافاريان</strong>
+      <button type="button" class="assistant-close" id="assistantClose" aria-label="Close">×</button>
+    </div>
+    <div class="assistant-body" id="assistantBody">
+      <div class="msg msg-bot" id="welcomeMsg">
+        أهلاً بكِ في عيادات بافاريان التخصصية. كيف يمكنني مساعدتكِ اليوم؟
+      </div>
+    </div>
+    <div class="quick-replies">
+      <button type="button" class="quick-chip" data-q="booking">حجز موعد</button>
+      <button type="button" class="quick-chip" data-q="doctor">عن الطبيب</button>
+      <button type="button" class="quick-chip" data-q="contact">أرقام التواصل</button>
+    </div>
+    <form class="assistant-input" id="assistantForm">
+      <input type="text" id="assistantInput" placeholder="اكتبي سؤالك هنا..." />
+      <button type="submit">إرسال</button>
+    </form>
   </div>
 
   <script>
-    const content = {
+    const LOGO_SRC = 'Bavarian_Logo_Emblem_Only_for_LightBG.png';
+    const WATERMARK_SRC = 'Bavarian_Logo_Emblem_Only_for_LightBG.png';
+
+    const mainLogoEl = document.getElementById('mainLogoImg');
+    if (mainLogoEl) mainLogoEl.src = LOGO_SRC;
+    document.querySelectorAll('.clinic-watermark-img').forEach((img) => {
+      img.src = WATERMARK_SRC;
+    });
+
+    const translations = {
       ar: {
-        lang: "ar",
-        dir: "rtl",
-        btn: "EN",
-        brandName: "عيادات بافاريان التخصصية",
-        brandSub: "Bavarian Health Care Clinic",
-        badge: "رعاية صحية بمعايير ألمانية",
-        heroTitle: "د. عبدالرحمن الشرقاوي",
-        heroDesc: "الخبير الألماني والمحاضر في أمراض القلب والأوعية الدموية، استشاري أول أمراض القلب والأوعية الدموية وقسطرة القلب والمنظمات، وزميل واستشاري القلب بـ Deutsches Herzzentrum München.",
-        waMainBtn: "واتساب (01107221974) ⭐",
-        waSecBtn: "واتساب (01107221964)",
-        callBtn: "اتصال مباشر",
-        clinicsTitle: "العيادات التخصصية",
-        devicesTitle: "الأجهزة والفحوصات",
-        teamTitle: "نخبة الاستشاريين والفريق الطبي",
-        contactTitle: "العناوين والتواصل",
-        cairoTitle: "فرع القاهرة",
-        cairoAddr: "المركز الطبي CITY CARE - كومباوند جاردينيا سيتي – مدينة نصر – طريق السويس",
-        cairoPhones: "هاتف: 01107221974 / 01107221964",
-        cairoEmail: "إيميل: gardinia@bavarianhcc.de",
-        deTitle: "الفرع الرئيسي (ألمانيا)",
-        deAddr: "مركز أمراض القلب وطب القلب الرياضي – نطاق München (ولاية بافاريا)",
-        dePhones: "هاتف: +49 8443 5783999 | فاكس: +49 8443 5783990",
-        deWeb: "الموقع: www.bavarianhcc.de | www.kardiologie-lkpfaffenhofen.de",
-        fbLink: "فيسبوك (@bavarianhealthcareclinic)",
-        igLink: "إنستجرام (@bavarianhealthcareclinic)",
-        siteLink: "الموقع الإلكتروني",
-        clinics: [
-          ["هبوط عضلة القلب", "متابعة واكتشاف مبكر بالتعاون مع Deutsches Herzzentrum München وتحت إشراف د. عبدالرحمن الشرقاوي."],
-          ["اضطرابات وارتفاع الدهون", "اكتشاف مبكر ومتابعة للكبار والأطفال بالتعاون مع الجمعية الألمانية لتصلب الشرايين."],
-          ["طب القلب الرياضي (قريباً)", "تأهيل مرضى القلب ومتابعة الرياضيين مع فحص CPET واللاكتات بالتعاون مع Prof. Martin Halle."],
-          ["طب الجينات وكهرباء القلب والنوم", "الفحص الجيني (Synlab)، اضطرابات النوم، كهرباء القلب والذبذبة الأذينية، ومنظمات القلب."]
-        ],
-        devices: [
-          ["جهاز هولتر (حتى 14 يوماً)", "تسجيل متواصل بدون أسلاك مزود بالذكاء الاصطناعي لاعتماد التقرير من ميونيخ."],
-          ["دراسة النوم المنزلي", "لاكتشاف مشاكل انقطاع التنفس أثناء النوم للرضع والأطفال والكبار."],
-          ["ضغط 24 ساعة ووظائف التنفس", "قياس ضغط الدم على مدار 24 ساعة وقياس السعة الرئوية وكفاءة التنفس."],
-          ["الإيكو والأشعة وCPET / InBody", "إيكو على القلب، سونار ودوبلر، InBody، وفحوصات المجهود CPET واللاكتات."]
-        ],
-        team: [
-          ["أ.د/ محمد سعد أبو النور", "نائب رئيس قسم القلب – جامعة كيل، واستشاري أمراض القلب والقسطرة الهيكلية وتغيير الصمامات."],
-          ["أ.د/ لمياء علام", "أستاذ أمراض كهرباء القلب بجامعة عين شمس واستشاري كهربية القلب ومنظمات القلب."],
-          ["أ.د/ ياسمين عبد الرازق", "أستاذ أمراض القلب بجامعة عين شمس واستشاري قلب الأطفال والعيوب الخلقية."],
-          ["فريق الاستشاريين والأخصائيين", "د/ غادة عطية، د/ أحمد محمد طعيمة، د/ أسماء جمال الدين، د/ سلوى حسيب، أ.د/ هبة سعيد، وفريق الأخصائيين."]
-        ]
+        dir: 'rtl',
+        lang: 'ar',
+        toggleLabel: 'EN',
+        brandName: 'عيادات بافاريان التخصصية',
+        brandSub: 'د. عبدالرحمن الشرقاوي — أمراض وقسطرة القلب',
+        navServices: 'التخصصات',
+        navAbout: 'عن الطبيب',
+        navContact: 'التواصل والحجز',
+        bookNow: 'احجز موعداً',
+        heroBadge: 'زميل Deutsches Herzzentrum München',
+        heroTitle: 'رعاية قلبية متخصصة بمعايير طبية ألمانية دقيقة',
+        heroDesc: 'بإشراف د. عبدالرحمن الشرقاوي — استشاري أول أمراض القلب وقسطرة القلب والمنظمات، لتشخيص ومتابعة حالات القلب والأوعية الدموية واضطرابات النبض بأحدث الأساليب الطبية.',
+        waBtn1: 'واتساب 01107221974',
+        waBtn2: 'واتساب 01107221964',
+        callBtn: 'اتصال مباشر',
+        doctolibBtn: 'Doctolib',
+        h1Title: 'قسطرة القلب',
+        h1Desc: 'تقييم وتشخيص دقيق للشرايين التاجية',
+        h2Title: 'منظمات ضربات القلب',
+        h2Desc: 'متابعة وبرمجة الأجهزة والمنظمات القلبية',
+        h3Title: 'استشارات متكاملة',
+        h3Desc: 'متابعة الضغط والذبذبة الأذينية وصحة القلب',
+        formTitle: 'نموذج حجز سريع عبر واتساب',
+        formSub: 'أدخل بياناتك وسيتم تجهيز طلب الحجز وإرساله مباشرة إلى واتساب العيادة.',
+        lblName: 'الاسم بالكامل',
+        lblPhone: 'رقم الهاتف',
+        lblLine: 'رقم واتساب العيادة',
+        lblNotes: 'سبب الزيارة أو الموعد المفضل',
+        submitWa: 'إرسال طلب الحجز إلى واتساب',
+        secServicesTitle: 'الخدمات والتخصصات الطبية',
+        secServicesSub: 'رعاية مبنية على الدقة التشخيصية والمتابعة المستمرة لكل مريض.',
+        s1Title: 'أمراض وقسطرة القلب',
+        s1Desc: 'تقييم آلام الصدر، قصور الشرايين التاجية، ومتابعة الحالات قبل وبعد القسطرة القلبية.',
+        s2Title: 'منظمات القلب واضطرابات النبض',
+        s2Desc: 'تشخيص تسارع أو بطء ضربات القلب، الذبذبة الأذينية، وضبط ومتابعة منظمات ضربات القلب.',
+        s3Title: 'الوقاية والمتابعة الدورية',
+        s3Desc: 'ضبط ضغط الدم والكوليسترول وتقييم عوامل الخطورة القلبية بخطة علاجية واضحة.',
+        secAboutTitle: 'عن د. عبدالرحمن الشرقاوي',
+        secAboutSub: 'استشاري أول أمراض القلب وقسطرة القلب والمنظمات، وزميل Deutsches Herzzentrum München، يجمع بين الخبرة الإكلينيكية والاهتمام الإنساني بكل حالة.',
+        contactTitle: 'تواصل مع العيادة مباشرة',
+        contactDesc: 'للاستفسارات وحجز المواعيد عبر الهاتف أو واتساب أو متابعة صفحاتنا الرسمية.',
+        quickInfoTitle: 'معلومات سريعة',
+        quickInfoDoc: 'د. عبدالرحمن الشرقاوي — زميل Deutsches Herzzentrum München',
+        footerCopy: '© عيادات بافاريان التخصصية — د. عبدالرحمن الشرقاوي. جميع الحقوق محفوظة.',
+        assistantBtn: 'المساعد الآلي',
+        assistantTitle: 'مساعد عيادات بافاريان',
+        welcomeMsg: 'أهلاً بكِ في عيادات بافاريان التخصصية. كيف يمكنني مساعدتكِ اليوم؟'
       },
       en: {
-        lang: "en",
-        dir: "ltr",
-        btn: "عربي",
-        brandName: "Bavarian Health Care Clinic",
-        brandSub: "عيادات بافاريان التخصصية",
-        badge: "Healthcare by German Standards",
-        heroTitle: "Dr. Abdelrahman Elsharkawy",
-        heroDesc: "German expert and lecturer in cardiovascular medicine, senior consultant in cardiology, cardiac catheterization & pacemakers, and fellow/consultant at Deutsches Herzzentrum München.",
-        waMainBtn: "WhatsApp (01107221974) ⭐",
-        waSecBtn: "WhatsApp (01107221964)",
-        callBtn: "Call Now",
-        clinicsTitle: "Specialized Clinics",
-        devicesTitle: "Devices & Diagnostics",
-        teamTitle: "Consultants & Medical Team",
-        contactTitle: "Locations & Contact",
-        cairoTitle: "Cairo Branch",
-        cairoAddr: "CITY CARE Medical Center - Gardenia City Compound, Nasr City, Suez Road",
-        cairoPhones: "Tel: 01107221974 / 01107221964",
-        cairoEmail: "Email: gardinia@bavarianhcc.de",
-        deTitle: "Main Branch (Germany)",
-        deAddr: "Cardiology & Sports Cardiology Center – Munich area (Bavaria)",
-        dePhones: "Tel: +49 8443 5783999 | Fax: +49 8443 5783990",
-        deWeb: "Web: www.bavarianhcc.de | www.kardiologie-lkpfaffenhofen.de",
-        fbLink: "Facebook (@bavarianhealthcareclinic)",
-        igLink: "Instagram (@bavarianhealthcareclinic)",
-        siteLink: "Website",
-        clinics: [
-          ["Heart Failure Clinic", "Early detection and follow-up in cooperation with Deutsches Herzzentrum München."],
-          ["Lipid Disorders Clinic", "Early detection and follow-up for adults and children with German Atherosclerosis Society guidance."],
-          ["Sports Cardiology (Coming Soon)", "Cardiac rehabilitation and athlete monitoring including CPET & lactate testing with Prof. Martin Halle."],
-          ["Genetics, Sleep, Arrhythmia & Devices", "Genetic testing (Synlab), sleep apnea diagnostics, arrhythmia/AFib, and pacemaker clinics."]
-        ],
-        devices: [
-          ["Holter (Up to 14 Days)", "Wire-free continuous AI-supported ECG recording with report review from Munich."],
-          ["Home Sleep Study", "Sleep apnea screening for infants, children, and adults."],
-          ["24h BP & Pulmonary Function", "24-hour blood pressure monitoring and respiratory efficiency testing."],
-          ["Echo, Ultrasound/Doppler & CPET", "Cardiac echo, abdominal/pelvic ultrasound, Doppler, InBody, CPET, and lactate testing."]
-        ],
-        team: [
-          ["Prof. Dr. Mohamed Saad Abu El-Nour", "Deputy Head of Cardiology, Kiel University; structural catheterization & heart valve expert."],
-          ["Prof. Dr. Lamia Allam", "Professor of Cardiac Electrophysiology, Ain Shams University; arrhythmia & pacemaker consultant."],
-          ["Prof. Dr. Yasmin Abdel Razek", "Professor of Cardiology, Ain Shams University; pediatric & congenital heart consultant."],
-          ["Consultants & Specialists", "Dr. Ghada Attia, Dr. Ahmed Mohamed Toeima, Dr. Asmaa Gamal El-Din, Dr. Salwa Hassib, Prof. Dr. Heba Saeed & specialists."]
-        ]
+        dir: 'ltr',
+        lang: 'en',
+        toggleLabel: 'عربي',
+        brandName: 'Bavarian Specialized Clinics',
+        brandSub: 'Dr. Abdelrahman Elsharkawy — Cardiology & Cath Lab',
+        navServices: 'Specialties',
+        navAbout: 'About Doctor',
+        navContact: 'Contact & Booking',
+        bookNow: 'Book Now',
+        heroBadge: 'Fellow of Deutsches Herzzentrum München',
+        heroTitle: 'Specialized Cardiac Care with German Clinical Precision',
+        heroDesc: 'Led by Dr. Abdelrahman Elsharkawy — Senior Consultant of Cardiology, Cardiac Catheterization & Pacemakers, providing comprehensive diagnosis and care for heart and rhythm conditions.',
+        waBtn1: 'WhatsApp 01107221974',
+        waBtn2: 'WhatsApp 01107221964',
+        callBtn: 'Direct Call',
+        doctolibBtn: 'Doctolib',
+        h1Title: 'Cardiac Catheterization',
+        h1Desc: 'Accurate evaluation of coronary arteries',
+        h2Title: 'Cardiac Pacemakers',
+        h2Desc: 'Device programming & rhythm follow-up',
+        h3Title: 'Comprehensive Care',
+        h3Desc: 'Hypertension, AFib & preventive cardiology',
+        formTitle: 'Quick WhatsApp Appointment Request',
+        formSub: 'Enter your details to prepare your request directly via clinic WhatsApp.',
+        lblName: 'Full Name',
+        lblPhone: 'Phone Number',
+        lblLine: 'Clinic WhatsApp Line',
+        lblNotes: 'Reason for Visit or Preferred Time',
+        submitWa: 'Send Booking Request via WhatsApp',
+        secServicesTitle: 'Medical Services & Specialties',
+        secServicesSub: 'Care built on diagnostic accuracy and continuous patient follow-up.',
+        s1Title: 'Cardiology & Catheterization',
+        s1Desc: 'Evaluation of chest symptoms, coronary artery disease, and pre/post catheterization care.',
+        s2Title: 'Pacemakers & Arrhythmias',
+        s2Desc: 'Diagnosis and management of palpitations, atrial fibrillation, and pacemaker follow-up.',
+        s3Title: 'Prevention & Routine Care',
+        s3Desc: 'Blood pressure, lipid control, and tailored cardiovascular risk management.',
+        secAboutTitle: 'About Dr. Abdelrahman Elsharkawy',
+        secAboutSub: 'Senior Consultant of Cardiology, Catheterization & Pacemakers, and Fellow of Deutsches Herzzentrum München, combining clinical expertise with dedicated patient care.',
+        contactTitle: 'Connect Directly with the Clinic',
+        contactDesc: 'For appointments and inquiries via phone, WhatsApp, or official social channels.',
+        quickInfoTitle: 'Quick Overview',
+        quickInfoDoc: 'Dr. Abdelrahman Elsharkawy — Fellow of Deutsches Herzzentrum München',
+        footerCopy: '© Bavarian Specialized Clinics — Dr. Abdelrahman Elsharkawy. All rights reserved.',
+        assistantBtn: 'AI Assistant',
+        assistantTitle: 'Bavarian Clinic Assistant',
+        welcomeMsg: 'Welcome to Bavarian Specialized Clinics. How can I help you today?'
       }
     };
 
-    let current = "ar";
+    let currentLang = 'ar';
+    const langToggle = document.getElementById('langToggle');
 
-    function renderList(id, arr) {
-      const el = document.getElementById(id);
-      el.innerHTML = arr.map(([title, desc]) =>
-        `<div class="item"><strong>${title}</strong><p>${desc}</p></div>`
-      ).join("");
-    }
+    function applyLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.body.classList.toggle('lang-en', lang === 'en');
+      langToggle.textContent = t.toggleLabel;
 
-    function applyLang(code) {
-      const d = content[code];
-      document.documentElement.lang = d.lang;
-      document.documentElement.dir = d.dir;
-
-      [
-        "brandName", "brandSub", "badge", "heroTitle", "heroDesc",
-        "waMainBtn", "waSecBtn", "callBtn", "clinicsTitle", "devicesTitle",
-        "teamTitle", "contactTitle", "cairoTitle", "cairoAddr", "cairoPhones",
-        "cairoEmail", "deTitle", "deAddr", "dePhones", "deWeb",
-        "fbLink", "igLink", "siteLink"
-      ].forEach((key) => {
-        const target = document.getElementById(key === "badge" ? "badgeText" : key);
-        if (target) target.textContent = d[key];
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
       });
-
-      document.getElementById("langBtn").textContent = d.btn;
-      renderList("clinicsGrid", d.clinics);
-      renderList("devicesGrid", d.devices);
-      renderList("teamGrid", d.team);
     }
 
-    function switchLang() {
-      current = current === "ar" ? "en" : "ar";
-      applyLang(current);
+    langToggle.addEventListener('click', () => {
+      applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    });
+
+    document.getElementById('whatsappBookingForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('patientName').value.trim();
+      const phone = document.getElementById('patientPhone').value.trim();
+      const line = document.getElementById('whatsappLine').value;
+      const notes = document.getElementById('visitNotes').value.trim();
+
+      const text = currentLang === 'ar'
+        ? `مرحباً بعيادات بافاريان التخصصية، أرغب في حجز موعد:\nالاسم: ${name}\nرقم الهاتف: ${phone}\nملاحظات: ${notes || 'غير محدد'}`
+        : `Hello Bavarian Specialized Clinics, I would like to book an appointment:\nName: ${name}\nPhone: ${phone}\nNotes: ${notes || 'N/A'}`;
+
+      const url = `https://wa.me/${line}?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+
+    const assistantToggle = document.getElementById('assistantToggle');
+    const assistantPanel = document.getElementById('assistantPanel');
+    const assistantClose = document.getElementById('assistantClose');
+    const assistantBody = document.getElementById('assistantBody');
+    const assistantForm = document.getElementById('assistantForm');
+    const assistantInput = document.getElementById('assistantInput');
+
+    function appendMsg(text, sender) {
+      const div = document.createElement('div');
+      div.className = `msg ${sender === 'user' ? 'msg-user' : 'msg-bot'}`;
+      div.textContent = text;
+      assistantBody.appendChild(div);
+      assistantBody.scrollTop = assistantBody.scrollHeight;
     }
 
-    applyLang("ar");
+    function replyToQuery(query) {
+      const q = query.toLowerCase();
+      if (q.includes('booking') || q.includes('حجز') || q.includes('موعد')) {
+        return currentLang === 'ar'
+          ? 'يمكنكِ إرسال طلب الحجز فوراً من نموذج الحجز السريع أو التواصل على واتساب: 01107221974 / 01107221964.'
+          : 'You can submit the quick booking form above or message WhatsApp on 01107221974 / 01107221964.';
+      }
+      if (q.includes('doctor') || q.includes('طبيب') || q.includes('شرقاوي')) {
+        return currentLang === 'ar'
+          ? 'د. عبدالرحمن الشرقاوي — استشاري أول أمراض القلب وقسطرة القلب والمنظمات، وزميل Deutsches Herzzentrum München.'
+          : 'Dr. Abdelrahman Elsharkawy — Senior Consultant of Cardiology, Catheterization & Pacemakers, Fellow of Deutsches Herzzentrum München.';
+      }
+      return currentLang === 'ar'
+        ? 'أرقام التواصل والواتساب: 01107221974 و01107221964، كما يمكنكِ زيارة صفحة Doctolib أو فيسبوك وإنستجرام من قسم التواصل.'
+        : 'Clinic WhatsApp & phone numbers: 01107221974 and 01107221964, plus Doctolib and social links in the Contact section.';
+    }
+
+    assistantToggle.addEventListener('click', () => {
+      const isOpen = assistantPanel.classList.toggle('open');
+      assistantToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    assistantClose.addEventListener('click', () => {
+      assistantPanel.classList.remove('open');
+      assistantToggle.setAttribute('aria-expanded', 'false');
+    });
+
+    document.querySelectorAll('.quick-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const val = chip.textContent.trim();
+        appendMsg(val, 'user');
+        appendMsg(replyToQuery(chip.getAttribute('data-q') || val), 'bot');
+      });
+    });
+
+    assistantForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = assistantInput.value.trim();
+      if (!val) return;
+      appendMsg(val, 'user');
+      appendMsg(replyToQuery(val), 'bot');
+      assistantInput.value = '';
+    });
   </script>
 </body>
 </html>
